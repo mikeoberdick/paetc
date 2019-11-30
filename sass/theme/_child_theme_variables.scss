@@ -6,15 +6,11 @@
 // Just add your color code here, compile the theme.scss file to change this color everywhere
 
 //Colors
-$brand-primary:         #f58634; // Orange
-$brand-secondary:	#000000; // Brand Secondary Color
-$brand-tertiary:	#ff0000; // Brand Tertiary Color
-$body-font-color:	#333;
+$blue:         #2A4EB0; // Blue
+$bg: rgba(236, 239, 252, .73);
 
 //Fonts
-$header-font:       'Fjalla One', sans-serif;
-$body-font:         'Open Sans', sans-serif;
-$nav-font:          'Roboto', sans-serif;
+$montserrat:       'Montserrat', sans-serif;
 
 //Fluid Typography Variables
 $min_width: 320px;
@@ -25,10 +21,6 @@ $max_font: 18px;
 // Fluid Header Variables
 $mod_1: 1.2; // mobile
 $mod_2: 1.5; // desktop
-
-
-
-
 
 //Mix-Ins
 
@@ -43,14 +35,30 @@ $mod_2: 1.5; // desktop
 
 //Text Shadow
 @mixin text-shadow {
-    text-shadow: 0 0 15px #000;
+    text-shadow: 2px 3px 6px rgba(0,0,0,.87);
 }
 
 //Drop Shadow
 @mixin shadow {
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,.3);
-	-moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,.3);
-	box-shadow: 0 8px 6px -6px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16);
+	-moz-box-shadow: 0 3px 6px rgba(0,0,0,.16);
+	box-shadow: 0 3px 6px rgba(0,0,0,.16);
+}
+
+//Placeholders
+@mixin placeholder($color) {
+  ::-webkit-input-placeholder {
+    color: $color;
+  }
+  ::-moz-placeholder {
+    color: $color;
+  }
+  :-ms-input-placeholder {
+   color: $color;
+  }
+  :-moz-placeholder {
+    color: $color;
+  }
 }
 
 //Border Radius

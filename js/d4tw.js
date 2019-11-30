@@ -1,11 +1,40 @@
+jQuery(function($){
+
 //Automatically generate filler content height to ensure footer is on bottom of the page
-jQuery(document).ready(function() {
-	jQuery('#js-heightControl').css('height', jQuery(window).height() - jQuery('html').height() +'px');
+$(document).ready(function() {
+	$('#js-heightControl').css('height', $(window).height() - $('html').height() +'px');
 });
 
-//Dropdown on hover
-jQuery('ul.navbar-nav li.dropdown').hover(function() {
-	jQuery(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-}, function() {
-	jQuery(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+$(document).ready(function(){
+  $('#testimonials').slick({
+   centerMode: true,
+   centerPadding: '250px',
+   slidesToShow: 2,
+   slidesToSscroll: 1,
+   prevArrow: false,
+   nextArrow: false,
+   responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+  });
+});
+
+//end of file
 });

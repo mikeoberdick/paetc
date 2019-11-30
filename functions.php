@@ -17,11 +17,10 @@ add_action( 'wp_enqueue_scripts', 'understrap_remove_scripts', 20 );
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
 
-	// Get the theme data
-	$the_theme = wp_get_theme();
+// Get the theme data
+    $the_theme = wp_get_theme();
     wp_enqueue_style( 'child-understrap-styles', get_stylesheet_directory_uri() . '/css/child-theme.min.css', array(), $the_theme->get( 'Version' ) );
     wp_enqueue_script( 'jquery');
-	wp_enqueue_script( 'popper-scripts', get_template_directory_uri() . '/js/popper.min.js', array(), false);
     wp_enqueue_script( 'child-understrap-scripts', get_stylesheet_directory_uri() . '/js/child-theme.min.js', array(), $the_theme->get( 'Version' ), true );
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
@@ -37,31 +36,22 @@ add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
 add_filter('widget_text', 'do_shortcode');
 
 
-
-
-
 // *** Theme Styles *** \\
 
 function d4tw_enqueue_styles () {
-    wp_enqueue_style( 'Open Sans', 'https://fonts.googleapis.com/css?family=Open+Sans' );
-    wp_enqueue_style( 'AOS CSS', get_stylesheet_directory_uri() . '/aos/aos.css' );
-}
+    wp_enqueue_style( 'Google Fonts', 'https://fonts.googleapis.com/css?family=Montserrat:300i,400,500,600, 600i,700&display=swap' );
+    wp_enqueue_style( 'Slick CSS', 'https://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css' );
+    };
 add_action('wp_enqueue_scripts', 'd4tw_enqueue_styles');
-
-
-
 
 
 // *** Theme Scripts *** \\
 
 function d4tw_enqueue_scripts () {
    wp_enqueue_script( 'D4TW Theme JS', get_stylesheet_directory_uri() . '/js/d4tw.js', array('jquery'), '1.0.0', true );
-   wp_enqueue_script( 'AOS JS', get_stylesheet_directory_uri() . '/aos/aos.js', array('jquery'), '1.0.0', true );
-}
+    wp_enqueue_script( 'Slick JS', 'https://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js', array('jquery'), '1.0.0', true );
+    }
 add_action( 'wp_enqueue_scripts', 'd4tw_enqueue_scripts' );
-
-
-
 
 
 // *** Advanced Custom Fields *** \\
@@ -77,26 +67,34 @@ if( function_exists('acf_add_options_page') ) {
     
 }
 
-//Register the Google Maps API for use with ACF
-function google_maps_scripts () {
-	if (is_page('contact')) {
-	   		wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB_LlgIpFpelPIbA25yjUi_dhCywFKKYco', array(), '3', true );
-			wp_enqueue_script( 'google-map-init', get_stylesheet_directory_uri() . '/js/google-maps.js', array('google-map', 'jquery'), '0.1', true );
-		}
-	}
-	
-add_action( 'wp_enqueue_scripts', 'google_maps_scripts' );
-
-function my_acf_google_map_api( $api ){
-	$api['key'] = 'AIzaSyB_LlgIpFpelPIbA25yjUi_dhCywFKKYco';
-	return $api;	
+// Filter except length to 35 words.
+function d4tw_custom_excerpt_length( $length ) {
+return 35;
 }
+add_filter( 'excerpt_length', 'd4tw_custom_excerpt_length', 999 );
 
-add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+//Update the theme read more link
+if ( ! function_exists( 'understrap_all_excerpts_get_more_link' ) ) {
+    function understrap_all_excerpts_get_more_link( $post_excerpt ) {
+        if ( ! is_admin() ) {
+            $post_excerpt = $post_excerpt . '...';
+        }
+        return $post_excerpt;
+    }
+}
+add_filter( 'wp_trim_excerpt', 'understrap_all_excerpts_get_more_link' );
 
+function remove_uncategorized_links( $categories ){
 
+    foreach ( $categories as $cat_key => $category ){
+        if( 1 == $category->term_id ){
+            unset( $categories[ $cat_key ] );
+        }
+    }
 
-
+    return $categories;
+    
+} add_filter('get_the_categories', 'remove_uncategorized_links', 1);
 
 // *** D4TW Custom Dashboard *** \\
 
@@ -162,20 +160,10 @@ function d4tw_admin_css() {
 add_action('admin_head', 'd4tw_admin_css');
 
 
-
-
-
 // *** Custom Menus *** \\
 
 
-
-
-
-
 // *** Template Tags *** \\
-
-
-
 
 
 // *** User Tweaks & Permissions *** \\
@@ -188,9 +176,6 @@ function d4tw_disable_admin_bar() {
         show_admin_bar(false);
     }
 }
-
-
-
 
 
 // *** Widgets *** \\
@@ -259,9 +244,6 @@ function d4tw_sidebars() {
 
 }
 add_action( 'widgets_init', 'd4tw_sidebars' );
-
-
-
 
 
 // *** WooCommerce *** \\
