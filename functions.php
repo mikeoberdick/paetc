@@ -59,13 +59,44 @@ add_action( 'wp_enqueue_scripts', 'd4tw_enqueue_scripts' );
 //Add the ACF options page
 if( function_exists('acf_add_options_page') ) {
 
-	acf_add_options_page(array(
+	acf_add_options_page(
+        array(
 		'page_title' 	=> 'Company Profile',
 		'menu_title'	=> 'Company Profile',
 		'menu_slug' 	=> 'company-profile'
 	));
+    acf_add_options_page(array(
+        'page_title'    => 'Testimonials',
+        'menu_title'    => 'Testimonials',
+        'menu_slug'     => 'testimonials',
+    ));
     
 }
+
+// Register Theme Sidebars
+function d4tw_sidebars() {
+    $args = array(
+        'id'            => 'blog_post_sidebar',
+        'class'         => 'blog_post_sidebar',
+        'name'          => 'Single Post Sidebar',
+        'description'   => 'This widget area will appear on single posts.',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5 class="widgettitle">',
+        'after_title'   => '</h5>',
+    );
+    register_sidebar( $args );
+}
+
+add_action( 'widgets_init', 'd4tw_sidebars' );
+
+//Hide the uncategorized category from widget in sidebar
+function exclude_widget_categories($args){
+    $exclude = "1";
+    $args["exclude"] = $exclude;
+    return $args;
+}
+add_filter("widget_categories_args","exclude_widget_categories");
 
 // Filter except length to 35 words.
 function d4tw_custom_excerpt_length( $length ) {
@@ -159,13 +190,6 @@ function d4tw_admin_css() {
 
 add_action('admin_head', 'd4tw_admin_css');
 
-
-// *** Custom Menus *** \\
-
-
-// *** Template Tags *** \\
-
-
 // *** User Tweaks & Permissions *** \\
 
 // Hide the admin toolbar for non-admins
@@ -186,64 +210,8 @@ function d4tw_remove_sidebars () {
 	unregister_sidebar( 'hero' );
 	unregister_sidebar( 'footerfull' );
 	unregister_sidebar( 'left-sidebar' );
-
+    unregister_sidebar( 'right-sidebar' );
+    unregister_sidebar( 'herocanvas' );
 }
 
 add_action( 'widgets_init', 'd4tw_remove_sidebars', 11 );
-
-// Register Theme Sidebars
-function d4tw_sidebars() {
-
-    $args = array(
-        'id'            => 'footer_1',
-        'class'         => 'footer_1',
-        'name'          => 'Footer 1',
-        'description'   => 'This widget area will appear in the first position of the footer.',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h5 class="widgettitle">',
-        'after_title'   => '</h5>',
-    );
-    register_sidebar( $args );
-
-    $args = array(
-        'id'            => 'footer_2',
-        'class'         => 'footer_2',
-        'name'          => 'Footer 2',
-        'description'   => 'This widget area will appear in the second position of the footer.',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h5 class="widgettitle">',
-        'after_title'   => '</h5>',
-    );
-    register_sidebar( $args );
-
-    $args = array(
-        'id'            => 'footer_3',
-        'class'         => 'footer_3',
-        'name'          => 'Footer 3',
-        'description'   => 'This widget area will appear in the third position of the footer.',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h5 class="widgettitle">',
-        'after_title'   => '</h5>',
-    );
-    register_sidebar( $args );
-
-    $args = array(
-        'id'            => 'footer_4',
-        'class'         => 'footer_4',
-        'name'          => 'Footer 4',
-        'description'   => 'This widget area will appear in the fourth position of the footer.',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h5 class="widgettitle">',
-        'after_title'   => '</h5>',
-    );
-    register_sidebar( $args );
-
-}
-add_action( 'widgets_init', 'd4tw_sidebars' );
-
-
-// *** WooCommerce *** \\

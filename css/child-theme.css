@@ -10793,7 +10793,7 @@ html {
     html {
       font-size: 18px; } }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   color: #2A4EB0;
   font-family: "Montserrat", sans-serif;
   font-weight: 700; }
@@ -10838,6 +10838,9 @@ body {
   background: rgba(236, 239, 252, 0.73);
   overflow-x: hidden; }
 
+a:hover {
+  text-decoration: none; }
+
 /*------------------------------------------------*/
 /*--------------------[LINKS]---------------------*/
 /*------------------------------------------------*/
@@ -10864,6 +10867,8 @@ body {
 .navbar {
   border-bottom: solid 17px #2A4EB0;
   background: #fff; }
+  .navbar .my-account a {
+    font-weight: 800; }
 
 #headerSearch {
   width: 215px;
@@ -10899,13 +10904,55 @@ body {
 /*------------------------------------------------*/
 /*----------------------[PAGES]-------------------*/
 /*------------------------------------------------*/
-#homepage #hero {
+.testimonial {
+  background: #fff; }
+  .testimonial:after {
+    content: '';
+    background: url("/wp-content/themes/wp-understrap/img/quotes.png");
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    height: 30px;
+    width: 40px;
+    background-size: cover;
+    background-position: center; }
+  .testimonial .heading {
+    font-size: 1rem;
+    font-weight: 600;
+    font-style: italic; }
+  .testimonial .location {
+    color: #2A4EB0;
+    font-size: .8rem; }
+
+.slick-dots {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  padding: 1rem 0;
+  list-style-type: none; }
+  .slick-dots li {
+    margin: 0 0.25rem; }
+  .slick-dots button {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    border: solid 1px #2A4EB0;
+    border-radius: 100%;
+    background-color: transparent;
+    text-indent: -9999px; }
+  .slick-dots li.slick-active button {
+    background-color: #2A4EB0; }
+
+.page-hero {
   height: 500px;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 0 0 500px inset;
-          box-shadow: rgba(0, 0, 0, 0.25) 0 0 0 500px inset;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10915,11 +10962,24 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center; }
-  #homepage #hero h1, #homepage #hero h2 {
+  .page-hero h1, .page-hero h2 {
     font-weight: 700;
     text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.87); }
-  #homepage #hero h2 {
+  .page-hero h2 {
     font-weight: 500; }
+  .page-hero .page-header {
+    background: #2A4EB0;
+    padding: 15px 25px; }
+
+.excerpt {
+  color: #808080; }
+
+.learn-more {
+  font-weight: 700; }
+
+#homepage #hero {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 0 0 500px inset;
+          box-shadow: rgba(0, 0, 0, 0.25) 0 0 0 500px inset; }
 
 #homepage #resources .date-wrapper:after {
   content: '';
@@ -10954,36 +11014,10 @@ body {
 #homepage #resources .tags {
   color: #000; }
 
-#homepage #resources .excerpt {
-  color: #808080; }
-
-#homepage #resources .learn-more {
-  font-weight: 700; }
-  #homepage #resources .learn-more:hover {
-    text-decoration: none; }
-
 #homepage #testimonials {
   overflow: hidden; }
   #homepage #testimonials .testimonial {
-    background: #fff;
     opacity: 0.5; }
-    #homepage #testimonials .testimonial:after {
-      content: '';
-      background: url("/wp-content/themes/wp-understrap/img/quotes.png");
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      height: 30px;
-      width: 40px;
-      background-size: cover;
-      background-position: center; }
-    #homepage #testimonials .testimonial .heading {
-      font-size: 1rem;
-      font-weight: 600;
-      font-style: italic; }
-    #homepage #testimonials .testimonial .location {
-      color: #2A4EB0;
-      font-size: .8rem; }
   #homepage #testimonials .slick-list {
     margin: 0 -30px; }
   #homepage #testimonials .slick-slide {
@@ -10992,6 +11026,18 @@ body {
     opacity: 1; }
   #homepage #testimonials .slick-active + .slick-active ~ .slick-slide {
     opacity: 0.5; }
+
+.the-post {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem; }
+
+#singleSidebar ul {
+  list-style: none;
+  padding-left: 0; }
+
+#singleSidebar .children {
+  padding-left: 1rem; }
 
 /*------------------------------------------------*/
 /*--------------------[FORMS]-------------------*/
@@ -11050,8 +11096,9 @@ body {
   position: relative; }
   #footer:before {
     content: url("/wp-content/themes/wp-understrap/img/wave.png");
+    height: 75vh;
     position: absolute;
-    bottom: 200px;
+    bottom: 100%;
     left: 0;
     z-index: -1; }
   #footer li {

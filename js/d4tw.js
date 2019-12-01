@@ -7,6 +7,7 @@ $(document).ready(function() {
 
 $(document).ready(function(){
   $('#testimonials').slick({
+   dots: true,
    centerMode: true,
    centerPadding: '250px',
    slidesToShow: 2,
@@ -33,6 +34,15 @@ $(document).ready(function(){
       }
     }
   ]
+  });
+});
+
+$(document).ready(function(){
+  $('#sidebarSlider').slick({
+   slidesToShow: 1,
+   slidesToSscroll: 1,
+   prevArrow: false,
+   nextArrow: false,
   });
 });
 

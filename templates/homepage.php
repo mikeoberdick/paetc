@@ -6,7 +6,7 @@
 	<main class="site-main" id="content">
 	
 	<?php $hero = get_field('hero'); ?>
-	<section id="hero" style = "background: url('<?php echo $hero['image']['url']; ?>');">
+	<section id="hero" style = "background: url('<?php echo $hero['image']['url']; ?>');" class = "page-hero">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
