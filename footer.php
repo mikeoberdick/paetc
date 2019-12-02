@@ -12,7 +12,7 @@
 	<footer id = "footer" class = "container-fluid py-5">
 		<div class="container">
 			<div class="row">
-				<div id = "footerOne" class="col-sm-3">
+				<div id = "footerOne" class="col-sm-3 d-none d-md-block">
 					<h5 class = "text-white">About</h5>
 					<ul id="footerAboutMenu" class = "list-unstyled">
 						<li><a href="<?php echo bloginfo('url'); ?>/services">Services</a></li>
@@ -22,14 +22,14 @@
 						<li><a href="<?php echo bloginfo('url'); ?>/contact">Contact</a></li>
 					</ul><!-- #footerAboutMenu -->
 				</div><!-- .col-sm-3 -->
-				<div id = "footerTwo" class="col-sm-3">
+				<div id = "footerTwo" class="col-sm-3 d-none d-md-block">
 					<h5 class = "text-white">Resources</h5>
 					<ul id="footerResourcesMenu" class = "list-unstyled">
 						<li><a href="<?php echo bloginfo('url'); ?>/about">About</a></li>
 						<li><a href="<?php echo bloginfo('url'); ?>/my-account">My Account</a></li>
 					</ul><!-- #footerAboutMenu -->
 				</div><!-- .col-sm-3 -->
-				<div id = "footerThree" class="col-sm-3">
+				<div id = "footerThree" class="col-sm-6 col-md-3 mb-3 mb-sm-0">
 					<div id="address" class = "d-flex mb-3">
 						<i class="fa fa-map-marker mr-3" aria-hidden="true"></i>
 						<span><?php the_field('address', 'option'); ?></span>
@@ -46,7 +46,7 @@
 						<a href = "mailto: <?php the_field('email_address', 'option'); ?>"><?php the_field('email_address', 'option'); ?></a>
 					</div><!-- #email -->
 				</div><!-- .col-sm-3 -->
-				<div id = "footerFour" class="col-sm-3">
+				<div id = "footerFour" class="col-sm-6 col-md-3">
 					<a href = '<?php the_field('donate_link', 'option'); ?>'><button role = 'button' class = 'btn btn-primary' target = "_blank">Donate Now</button></a>
 				</div><!-- .col-sm-3 -->
 			</div><!-- .row -->
@@ -55,9 +55,9 @@
 					<div id="disclaimer" class = "py-3 mb-3">
 						<p class = "mb-0"><?php the_field('footer_disclaimer', 'option'); ?></p>
 					</div><!-- #disclaimer -->
-					<div class = "d-flex justify-content-between">
-						<p id="copyright" class = "mb-0"><?php the_field('footer_copyright', 'option'); ?></p>
-						<p id = "attribution">website by <a href = "https://www.knockmedia.com" target = "_blank">knockmedia</a></p>
+					<div class = "d-flex justify-content-center justify-content-md-between flex-column flex-md-row">
+						<p id="copyright" class = "mb-0 text-center text-md-left mb-3 mb-md-0"><?php the_field('footer_copyright', 'option'); ?></p>
+						<p id = "attribution" class = "text-center text-md-left">website by <a href = "https://www.knockmedia.com" target = "_blank">knockmedia</a></p>
 					</div><!-- #copyright -->
 				</div><!-- .col-sm-12 -->
 			</div><!-- .row -->			

@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  * The template for displaying all pages.
  *
@@ -17,13 +17,13 @@ get_header(); ?>
 			<?php get_template_part( 'snippets/page-header' ); ?>
 			<div class = "container">
 				<div class="row mb-5">
-					<div class="col-sm-8">
+					<div class="col-sm-12 col-md-8">
 						<h2 class="h3 mb-3"><?php the_title(); ?></h2>
 						<div class="the-content">
 							<?php the_content(); ?>
 						</div><!-- .the-content -->
-					</div><!-- .col-sm-8 -->
-					<div class="col-sm-4">
+					</div><!-- .col-sm-12 -->
+					<div class="d-none d-md-block col-md-4">
 						<section id="sidebarSlider" class="mb-5">
 <?php if( have_rows('testimonials', 'options') ):while ( have_rows('testimonials', 'options') ):the_row(); ?>
 						  <div class = "testimonial p-4 position-relative">
@@ -36,7 +36,7 @@ get_header(); ?>
 						  </div><!-- .testimonial -->
 						<?php endwhile; endif; ?>
 						</section><!-- #sidebarSlider -->
-					</div><!-- .col-sm-4 -->
+					</div><!-- .col-md-4 -->
 				</div><!-- .row -->
 
 				<section id="events" class="row mb-5 text-center">

@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying archive pages.
+ * The template for displaying search results.
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
@@ -12,11 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header(); ?>
-	<div id="archive">
+	<div id="searchResults">
 		<main id="content" class="site-main container mt-5" tabindex="-1">
 			<div class="row">
 				<div class="col-sm-12">
-					<h1 class="h3 mb-3">Currently Viewing the "<?php single_cat_title(); ?>" archive</h1>
+					<h1 class="h3 mb-3">Search results for "<?php the_search_query(); ?>"</h1>
 				</div><!-- .col-sm-12 -->
 			</div><!-- .row -->
 				<?php if ( have_posts() ) : ?>
@@ -34,5 +34,5 @@ get_header(); ?>
 					<?php understrap_pagination(); ?>
 				</div><!-- #postNavigation -->
 		</main><!-- #content -->
-	</div><!-- #archive -->
+	</div><!-- #searchResults -->
 <?php get_footer(); ?>

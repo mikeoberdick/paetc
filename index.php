@@ -30,8 +30,9 @@ get_header(); ?>
 				<?php endwhile; ?>
 				</div><!-- .row -->
 				<?php endif; ?>
-			<!-- The pagination component -->
-			<?php understrap_pagination(); ?>
+				<div id="postNavigation">
+					<?php understrap_pagination(); ?>
+				</div><!-- #postNavigation -->
 		</main><!-- #content -->
 	</div><!-- #resources -->
 </div><!-- #post-X -->

@@ -130,16 +130,15 @@ function remove_uncategorized_links( $categories ){
 // *** D4TW Custom Dashboard *** \\
 
 function d4tw_add_dashboard_widget() {
-	add_meta_box('wp_dashboard_widget_1', 'Theme Details', 'd4tw_theme_info', 'dashboard', 'side', 'high');
-  //wp_add_dashboard_widget('wp_dashboard_widget', 'Theme Details', 'd4tw_theme_info');
+	add_meta_box('wp_dashboard_widget_1', 'Site Information', 'd4tw_theme_info', 'dashboard', 'side', 'high');
 }
 add_action('wp_dashboard_setup', 'd4tw_add_dashboard_widget' );
  
 function d4tw_theme_info() {
   echo "<ul>
-  <li><strong>Developed By:</strong> Designs 4 The Web</li>
-  <li><strong>Website:</strong> <a href='http://www.designs4theweb.com'>www.designs4theweb.com</a></li>
-  <li><strong>Contact:</strong> <a href='mailto:mike@designs4theweb.com'>mike@designs4theweb.com</a></li>
+  <li><strong>Developed By:</strong> KnockMedia</li>
+  <li><strong>Website:</strong> <a href='http://www.knockmedia.com'>www.knockmedia.com</a></li>
+  <li><strong>Contact:</strong> <a href='mailto:nateb@knockmedia.com'>nateb@knockmedia.com</a></li>
   </ul>";
 }
 
@@ -157,7 +156,6 @@ function d4tw_remove_dash_meta() {
         remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
         remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
         remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' );
-        remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
         remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
         remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
         remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
@@ -167,7 +165,7 @@ add_action( 'admin_init', 'd4tw_remove_dash_meta' );
 
 //Filter the WordPress branding in the dashboard footer
 function d4tw_filter_admin_footer () {
-    echo '<span id="dashFooter">Website developed by <a style = "color: #ff0000; text-decoration: none;" href="http://www.designs4theweb.com" target="_blank">Designs 4 The Web</a></span>';
+    echo '<span id="dashFooter">Website developed by <a style = "color: #ff0000; text-decoration: none;" href="http://www.knockmedia.com" target="_blank">KnockMedia</a></span>';
 }
 add_filter('admin_footer_text', 'd4tw_filter_admin_footer');
 

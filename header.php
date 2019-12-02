@@ -48,9 +48,13 @@ $container = get_theme_mod( 'understrap_container_type' );
 					<?php $image = get_field('logo', 'option'); ?>
 					<img id = "headerLogo" src = "<?php echo $image['url']; ?>" alt = "<?php echo esc_attr( get_bloginfo( 'name') ); ?>">
 				</a>
-
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-					<span class = "mobileToggle"><i class="fa fa-bars" aria-hidden="true"></i> Menu</span>
+				
+				<!-- MOBILE MENU -->
+				<button class="navbar-toggler" type="button" data-target="#modalNavigation" data-toggle="modal">
+					<span class='sr-only'>Open navigation</span>
+					<span class = "mobileToggle">
+						<i class="fa fa-bars" aria-hidden="true"></i> Menu
+					</span>
 				</button>
 				
 				<div id = "headerRight">
@@ -74,6 +78,48 @@ $container = get_theme_mod( 'understrap_container_type' );
 							)
 						); ?>	
 					</div><!-- .nav -->
+					
+<!-- MOBILE NAVIGATION MODAL -->
+<div class="modal fade modal-fullscreen-menu p-3" id="modalNavigation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog align-items-start" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<?php $logo = get_field('mobile_logo', 'option'); ?>
+      	<a rel = "home" class="navbar-brand" data-itemprop="url" title="<?php echo esc_attr( get_bloginfo( 'name') ); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+      		<img src="<?php echo $logo['url']; ?>" alt="<?php echo esc_attr( get_bloginfo( 'name') ); ?>">
+      	</a>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div id = "headerRight">
+			<div class="search">
+				<div id = "donate" class = "mr-3">
+					<a href = '<?php the_field('donate_link', 'option'); ?>'><button role = 'button' class = 'btn btn-primary' target = "_blank">Donate</button></a>
+				</div>
+				<div id = "headerSearch"><?php get_search_form(); ?></div>
+			</div><!-- .search -->
+		</div><!-- #headerRight -->
+        <div class="mobile-nav">
+			<!-- The WordPress Menu goes here -->
+			<?php wp_nav_menu(
+				array(
+					'theme_location'  => 'primary',
+					'container_class' => '',
+					'container_id'    => '',
+					'menu_class'      => 'navbar-nav',
+					'fallback_cb'     => '',
+					'menu_id'         => 'main-menu',
+					'walker'          => new understrap_WP_Bootstrap_Navwalker(),
+				)
+			); ?>	
+		</div><!-- .mobile-nav -->
+      </div>
+    </div>
+  </div>
+</div>
+
 				</div><!-- #headerRight -->
 			</div><!-- .container -->
 		</nav><!-- .site-navigation -->
